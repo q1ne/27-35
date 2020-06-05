@@ -1,0 +1,26 @@
+n = int(input())
+m = 0
+ost = [0]*80
+b = 0 # 1
+c = 0 # 2
+
+for i in range(0,n):
+    a = int(input())
+    ost1 = a%80
+    ost2 = (80-ost1)%80
+    if ost1 != ost2: # если остатки не равны 0 или 40
+        ost[ost1] = a
+        if ost[ost1] + ost[ost2] > m and (ost[ost1] + ost[ost2]) % 80 == 0:
+            b = ost[ost2]
+            c = ost[ost1]
+            m = b + c
+    else:
+        if a + ost[ost1] > m and (a+ost[ost1])%80 == 0:
+            b = ost[ost1]
+            c = a
+            m = b + c
+        ost[ost1] = a
+if m>0:
+    print(b,c)
+else:
+    print(0, 0)
