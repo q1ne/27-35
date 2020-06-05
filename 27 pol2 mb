@@ -1,0 +1,19 @@
+i = int(input())
+c = []
+d = ''
+s = 0
+m = 1
+for k in range(i)
+    a = float(input())
+    s += 1
+    if a = 1
+        m = a
+        d += str(s) + ' '
+    else
+        c.append(a)
+if len(c) == i
+    m = max(c)
+    for l in range(len(c))
+        if c[l] == m
+            d += str(l+1)
+print(d)
