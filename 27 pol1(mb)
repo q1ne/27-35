@@ -1,0 +1,86 @@
+c = int(input())
+a1 = 0 #количество точек в четверти
+aa1 = ['0','0'] #координаты ближайшей к осям точки
+r1 = 0 #мнинимальное расстояние до оси
+a2 = 0
+aa2 = ['0','0']
+r2 = 0
+a3 = 0
+aa3 = ['0','0']
+r3 = 0
+a4 = 0
+aa4 = ['0','0']
+r4 = 0
+
+for k in range(c):
+    p = input().split()
+    x = int(p[0])
+    y = int(p[1])
+    if x*y != 0:
+        if x*y > 0:
+            if x > 0:
+                if a1 ==0:
+                    aa1[0] = str(x)
+                    aa1[1] = str(y)
+                    r1 = min(abs(x), abs(y))
+                else:
+                    if min(abs(x), abs(y)) < r1:
+                        r1 = min(abs(x),abs(y))
+                        aa1[0] = str(x)
+                        aa1[1] = str(y)
+                a1 +=1
+            if x< 0:
+                if a3 ==0:
+                    aa3[0] = str(x)
+                    aa3[1] = str(y)
+                    r3 = min(abs(x), abs(y))
+                else:
+                    if min(abs(x), abs(y)) < r3:
+                        r3 = min(abs(x),abs(y))
+                        aa3[0] = str(x)
+                        aa3[1] = str(y)
+                a3 +=1
+        if x*y < 0:
+            if x>0:
+                if a4 ==0:
+                    aa4[0] = str(x)
+                    aa4[1] = str(y)
+                    r4 = min(abs(x), abs(y))
+                else:
+                    if min(abs(x), abs(y)) < r4:
+                        r4 = min(abs(x),abs(y))
+                        aa4[0] = str(x)
+                        aa4[1] = str(y)
+                a4 += 1
+            if x<0:
+                if a2 ==0:
+                    aa2[0] = str(x)
+                    aa2[1] = str(y)
+                    r2 = min(abs(x), abs(y))
+                else:
+                    if min(abs(x), abs(y)) < r2:
+                        r2 = min(abs(x),abs(y))
+                        aa2[0] = str(x)
+                        aa2[1] = str(y)
+                a2 += 1
+maxim = max(a1, a2, a3, a4)
+if maxim == a4:
+    print('K = 4')
+    print('M = ' + str(a4))
+    print('A = (' + aa4[0] + ',' + aa4[1] + ')')
+    print('R = ' + str(r4))
+if maxim == a3:
+    print('K = 3')
+    print('M = ' + str(a3))
+    print('A = (' + aa3[0] + ',' + aa3[1] + ')')
+    print('R = ' + str(r3))
+if maxim == a2:
+    print('K = 2')
+    print('M = ' + str(a2))
+    print('A = (' + aa2[0] + ',' + aa2[1] + ')')
+    print('R = ' + str(r2))
+if maxim == a1:
+    print('K = 1')
+    print('M = '+ str(a1))
+    print('A = (' + aa1[0] + ',' + aa1[1] + ')')
+    print('R = ' + str(r1))
