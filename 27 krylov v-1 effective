@@ -1,0 +1,16 @@
+n = int(input())
+a = 0
+b = 0
+ost=[0]*1009
+m = 0
+for i in range(n):
+    c = int(input())
+    ost1 = c%1009
+    ost2 = (1009-c%1009)%1009
+    if ost[ost2] != 0:
+        if ost[ost2] > c and (ost[ost2] + c) >m and (ost1 + ost2)%1009 ==0:
+            a = ost[ost2]
+            b = c
+            m = a + b
+    ost[ost1] = c
+print(a,b)
