@@ -1,0 +1,11 @@
+#найти максимальное чётное произведение двух чисел на расстоянии хотя бы 5 (>=5)
+n = int(input())
+a = []
+m = 0
+for i in range(n):
+    a.append(int(input()))
+for i in range(n):
+    for j in range(i+5,n):
+        if (a[i]*a[j])%2==0 and a[i]*a[j]>m:
+            m = a[i]*a[j]
+print(a[i])
