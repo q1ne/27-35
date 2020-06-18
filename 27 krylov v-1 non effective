@@ -1,0 +1,12 @@
+a = []
+n = int(input())
+b = 0
+c = 0
+for i in range(n):
+    a.append(int(input()))
+for i in range(n):
+    for j in range(i+1,n):
+        if a[i] > a[j] and (a[i] + a[j]) % 1009 == 0 and a[i] + a[j] > b + c:
+            b = a[i]
+            c = a[j]
+print(b,c)
