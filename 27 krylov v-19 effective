@@ -2,14 +2,15 @@ n = int(input())
 raz = 10001
 s = 0
 max = 0
-predmax = 0
+t = 0 #разность1
+y = 0 #разность2
 с=0 #индекс максимума
 for i in range(n):
     a = input().split()
     a[0] = int(a[0])
     a[1] = int(a[1])
     a[2] = int(a[2])
-    if a[0]*a[1] > a[1]*a[2]: #нахождение максимума и его индека в тройке чисел
+    if a[0]*a[1] > a[1]*a[2]: #нахождение максимума и его индекcа в тройке чисел
         if a[0] > a[1]:
             max = a[0]
             c =0
@@ -23,23 +24,27 @@ for i in range(n):
         else:
             max = a[2]
             c=2
-    if a[c]-a[0]==0: #нахождение предмаксимума в тройке чисел
-        if a[1] > a[2]:
-            predmax = a[1]
-        else:
-            predmax = a[2]
-    elif a[c]-a[1]==0:
-        if a[0]>a[2]:
-            predmax = a[0]
-        else:
-            predmax = a[2]
-    else:
-        if a[1]> a[2]:
-            predmax = a[1]
-        else:
-            predmax = a[2]
-    if (max - predmax)%3 !=0 and (max-predmax)<raz:
-        raz = max - predmax
+    if c == 0:
+        t = a[0]-a[1]
+        y = a[0]-a[2]
+        if t>y and t%3>0:
+            raz = t
+        if y>=t and y%3>0:
+            raz = y
+    if c == 1:
+        t = a[1] - a[0]
+        y = a[1] - a[2]
+        if t>=y and t%3>0:
+            raz = t
+        if y>t and y%3>0:
+            raz = y
+    if c == 2:
+        t = a[2] - a[0]
+        y = a[2] - a[1]
+        if t>=y and t%3>0:
+            raz = t
+        if y<t and y%3>0:
+            raz = y
     s += max
 if s%3>0:
     print(s)
