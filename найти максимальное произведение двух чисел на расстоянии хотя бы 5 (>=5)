@@ -1,0 +1,17 @@
+#найти максимальное произведение двух чисел на расстоянии хотя бы 5 (>=5) 
+n = int(input())
+line = []
+max_sv = 0
+max = 0
+for i in range(5):
+    line.append(int(input()))
+for i in range(5,n):
+    x = int(input())
+    if x*max_sv>max:
+        max = x*max_sv
+    if line[0]>max_sv:
+        max_sv = line[0]
+    for i in range(1,5):
+        line[i-1] = line[i]
+    x = line[4]
+print(max)
