@@ -1,0 +1,55 @@
+#максимальное произведение на расстоянии 8, кратное 15
+m3 = 0
+m5 = 0
+m15 = 0
+m1 = 0
+a = []
+b = [0,0,0,0] #for max
+t = 0 #max of max
+m = 0
+n = int(input())
+for i in range(8):
+    a.append(int(input()))
+for i in range(8,n):
+    b[0] = m3
+    b[1] = m5
+    b[2] = m15
+    b[3] = m1
+    
+    for k in range(4):
+        if b[k]>t:
+            t = b[k]
+    
+    x = int(input())
+    
+    if x % 15==0:
+        if x*t>m:
+            m = x*t
+    elif x%5==0:
+        if x*m3>m:
+            m = x*m3
+    elif x%3==0:
+        if x*m5>m:
+            m = x*m5
+    else:
+        if x*m15>0:
+            m = x*m15
+    
+    if a[0]%15==0: 
+        if a[0]>m15:
+            m15 = a[0]
+    elif a[0]%5==0:
+        if a[0]>m5:
+            m5 = a[0]
+    elif a[0]%3==0:
+        if a[0]>m3:
+            m3 = a[0]
+    else:
+        if a[0]>m1:
+            m1 = a[0]
+    
+    for j in range(7):
+        a[j] = a[j+1]
+    a[7] = x
+        
+print(m)
