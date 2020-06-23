@@ -1,0 +1,10 @@
+a = []
+c = 0
+n = int(input())
+for i in range(n):
+    a.append(int(input()))
+for i in range(n):
+    for j in range(i+7,n):
+        if (a[i]+a[j])%80==0:
+            c+=1
+print(c)
