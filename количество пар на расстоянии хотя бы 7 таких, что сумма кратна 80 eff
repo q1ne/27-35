@@ -1,0 +1,13 @@
+n = int(input())
+a = [] #массив очереди
+b = [0]*80 #массив остатков
+c = 0 #счётчик
+for i in range(7):
+    a.append(int(input))
+for i in range(7,n):
+    x = int(input())
+    s = a[i%7]%80
+    a[i%7] = x
+    b[s] += 1
+    c += b[(80-s)%80]
+print(c)
