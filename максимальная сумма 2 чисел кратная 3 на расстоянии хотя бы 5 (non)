@@ -1,0 +1,11 @@
+#максимальная сумма 2 чисел кратная 3 на расстоянии хотя бы 5
+n = int(input())
+a = []
+m = 0
+for i in range(n):
+    a.append(int(input()))
+for i in range(n):
+    for j in range(i+5,n):
+        if a[i] + a[j]>m and (a[i] + a[j])%3==0:
+           m = a[i] + a[j]
+print(m)
