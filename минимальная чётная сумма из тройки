@@ -1,0 +1,29 @@
+#минимальная чётная сумма из тройки
+n = int(input())
+s = 0 #минимальная cумма квадратов
+m = 10001 #минимальное число в тройке
+r_nech = 10001 #минимальная разность нечетная
+t = 0
+for i in range(n):
+    a = input().split()
+    
+    for d in range(3):
+        a[d] = int(a[d])
+    
+    for j in range(3):
+        if a[j] < m:
+            m = a[j]
+    for j in range(3):
+        t = a[j] - m
+        if t != 0:
+            if t%2 != 0 and t < r_nech:
+                r_nech = t
+    s += m
+    m = 10001
+if s%2 != 0:
+    if r_nech != 10001:
+        print(s+r_nech)
+    else:
+        print("Не существует")
+else:
+    print(s)
