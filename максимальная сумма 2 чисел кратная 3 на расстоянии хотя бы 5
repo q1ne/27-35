@@ -1,0 +1,23 @@
+#максимальная сумма 2 чисел кратная 3 на расстоянии хотя бы 5 (66)
+n = int(input())
+line = []
+ost=[0]*3
+m = 0
+for i in range(5):
+   line.append(int(input()))
+or i in range(5,n):
+   x = int(input())
+    t = line[i%5]
+    a = x%3
+    b = (3-a)%3
+   
+   if t > ost[t%3]:
+       ost[t%3] = t
+    
+   line[i%5] = x
+   
+   if ost[b] != 0:
+        if x + ost[b] >m:
+            m = x + ost[b]
+
+print(m)  
