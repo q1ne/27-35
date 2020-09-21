@@ -1,0 +1,74 @@
+using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Security.Cryptography.X509Certificates;
+
+namespace RefactorMe
+{
+    class Painter
+    {
+        static float x, y;
+        static Graphics graphic;
+
+        public static void Initialize(Graphics newGraphic)
+        {
+            graphic = newGraphic;
+            graphic.SmoothingMode = SmoothingMode.None;
+            graphic.Clear(Color.Black);
+        }
+
+        public static void SetPosition(float x0, float y0)
+        {
+            x = x0; y = y0;
+        }
+
+        public static void MakeStepAndDrow(Pen handle, double length, double angle)
+        {
+            //Делает шаг длиной length в направлении angle и рисует пройденную траекторию
+            var x1 = (float)(x + length * Math.Cos(angle));
+            var y1 = (float)(y + length * Math.Sin(angle));
+            graphic.DrawLine(handle, x, y, x1, y1);
+            x = x1;
+            y = y1;
+        }
+
+        public static void ChangeCoordinates(double length, double angle)
+        {
+            x = (float)(x + length * Math.Cos(angle));
+            y = (float)(y + length * Math.Sin(angle));
+        }
+    }
+
+    public class ImpossibleSquare
+    {
+        private const float k1ForMin = 0.375f;
+        private const float k2ForMin = 0.04f;
+        public static void Draw(int width, int height, double angleOfPivot, Graphics graphic)
+        {
+            // angleOfPivot пока не используется, но будет использоваться в будущем
+            Painter.Initialize(graphic);
+
+            var minWidthHeight = Math.Min(width, height);
+            var diagonalLength = Math.Sqrt(2) * (k1ForMin + k2ForMin) / 2;
+            var x0 = (float)(diagonalLength * Math.Cos(Math.PI / 4 + Math.PI)) + width / 2f;
+            var y0 = (float)(diagonalLength * Math.Sin(Math.PI / 4 + Math.PI)) + height / 2f;
+
+            Painter.SetPosition(x0, y0);
+
+            DrowBySide(minWidthHeight, 0);
+            DrowBySide(minWidthHeight, -Math.PI / 2);
+            DrowBySide(minWidthHeight, Math.PI);
+            DrowBySide(minWidthHeight, Math.PI / 2);
+        }
+
+        public static void DrowBySide(int minWidthHeight, double angle)
+        {
+            Painter.MakeStepAndDrow(Pens.Yellow, minWidthHeight * k1ForMin, angle);
+            Painter.MakeStepAndDrow(Pens.Yellow, minWidthHeight * k2ForMin * Math.Sqrt(2), angle + Math.PI / 4);
+            Painter.MakeStepAndDrow(Pens.Yellow, minWidthHeight * k1ForMin, angle + Math.PI);
+            Painter.MakeStepAndDrow(Pens.Yellow, minWidthHeight * (k1ForMin - k2ForMin), angle + Math.PI / 2);
+            Painter.ChangeCoordinates(minWidthHeight * k2ForMin, angle - Math.PI);
+            Painter.ChangeCoordinates(minWidthHeight * k2ForMin * Math.Sqrt(2), angle + 3 * Math.PI / 4);     
+        }
+    }
+}
